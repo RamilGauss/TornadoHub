@@ -1,0 +1,124 @@
+﻿<Window x:Class="Hub.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hub"
+        mc:Ignorable="d"
+        Title="TornadoHub v0.0001" Height="450" Width="800">
+    <Grid>
+        <TabControl TabStripPlacement="Left">
+            <TabItem x:Name="InstallTab" Header="Install" Margin="0,0,0,0" Height="50" FontSize="16" FontWeight="Bold" Width="100">
+                <Grid Background="#FFE5E5E5">
+                    <ListView x:Name="InstallList">
+                        <ListView.Resources>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="" Width="310">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Info}"
+                                                   Name="InfoLabel" 
+                                                   Width="300">
+                                            </Label>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="55">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="AddButton"
+                                                    Content="+" 
+                                                    Width="40" 
+                                                    Click="AddButtonHandler"></Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="55">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="InfoButton" 
+                                                    Content="?" 
+                                                    Width="40" 
+                                                    Click="InfoButtonHandler"
+                                                    >
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="LaunchTab" Header="Launch" Margin="0,0,0,0" Height="50" FontSize="16" FontWeight="Bold" Width="100">
+                <Grid Background="#FFE5E5E5">
+                    <ListView x:Name="LaunchList">
+                        <ListView.Resources>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="" Width="310">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Info}"
+                                                   Name="InfoLabel" 
+                                                   Width="300">
+                                            </Label>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="55">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="AddButton"
+                                                    Content="+" 
+                                                    Width="40" 
+                                                    Click="UninstallButtonHandler"></Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="55">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="InfoButton" 
+                                                    Content="?" 
+                                                    Width="40" 
+                                                    Click="InfoButtonHandler"
+                                                    >
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="AccountTab" Header="Account" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" FontSize="16" FontWeight="Bold" Margin="0">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="EventsTab" Header="Events" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" Margin="0" FontSize="16" FontWeight="Bold">
+                <Grid Background="#FFE5E5E5">
+                    <StatusBar x:Name="EventsStatusBar" Height="373" Margin="0,40,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="ClearEventsButton" Content="Clear" HorizontalAlignment="Left" Margin="584,0,0,0" VerticalAlignment="Top" Width="100" Click="ClearEventsHandler" Height="40"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="AboutTab" Header="About" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" Margin="0" FontSize="16" FontWeight="Bold">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="About info" Margin="0,42,0,0" VerticalAlignment="Top" Height="371"/>
+                    <Label Content="Label" Margin="0,0,114,371"/>
+                    <Button x:Name="CheckUpdatesButton" Content="Check updates" HorizontalAlignment="Left" Height="42" Margin="570,0,0,0" VerticalAlignment="Top" Width="114"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

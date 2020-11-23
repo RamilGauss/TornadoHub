@@ -1,0 +1,15 @@
+{
+    "VersionList": [
+        {
+            "Info": [
+                "First release",
+                "For Hub testing"
+            ],
+            "MajorVersion": 0,
+            "MinorVersion": 1,
+
+            "Build": 1,
+            "DownloadUrl": "https://github.com/RamilGauss/TornadoHub/archive/Dummy.zip"
+        }
+    ]
+}
