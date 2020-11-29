@@ -1,15 +1,17 @@
 {
-    "VersionList": [
+    "ApplicationInfoList": [
         {
-            "Info": [
-                "First release",
-                "For Hub testing"
-            ],
-            "MajorVersion": 0,
-            "MinorVersion": 1,
+            "Version": {
+                "Info": [
+                    "First relase"
+                ],
+                "MajorVersion": 0,
+                "MinorVersion": 1,
 
-            "Build": 1,
-            "DownloadUrl": "https://github.com/RamilGauss/TornadoHub/archive/Dummy.zip"
+                "Build": 1,
+                "DownloadUrl": "https://github.com/RamilGauss/TornadoHub/releases/download/Dummy/TornadoHub_v0.1.b1_Win32.zip"
+            },
+            "LaunchPath": "./TornadoHub.exe"
         }
     ]
 }
