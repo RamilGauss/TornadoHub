@@ -1,11 +1,17 @@
 {
-    "Version": {
-        "Info": [
-            ""
-        ],
-        "MajorVersion": 0,
-        "MinorVersion": 0,
-        "Build": 0,
-        "DownloadUrl": ""
-    }
+    "ApplicationInfo": {
+        "Version": {
+            "Info": [
+                "First release",
+                "For Hub testing"
+            ],
+            "MajorVersion": 0,
+            "MinorVersion": 1,
+
+            "Build": 1,
+            "DownloadUrl": ""
+        },
+        "LaunchPath": ""
+    },
+    "InstallationFolder": ""
 }

@@ -1,7 +1,8 @@
 ﻿namespace Hub
 {
-    public class LocalHub
+    public class ApplicationInfo
     {
         public VersionInfo Version { get; set; }
+        public string LaunchPath { get; set; }
     }
 }

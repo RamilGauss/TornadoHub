@@ -4,7 +4,7 @@ namespace Hub
     {
         public string Info { get; set; }
 
-        public VersionInfo EditorProperties { get; set; }
+        public ApplicationInfo EditorProperties { get; set; }
     }
 }
 

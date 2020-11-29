@@ -78,8 +78,19 @@
                                 <GridViewColumn Header="" Width="55">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
+                                            <Button Name="LaunchButton"
+                                                    Width="40" 
+                                                    Click="LaunchButtonHandler">
+                                                <Image Source="LaunchIcon.png" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="" Width="55">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
                                             <Button Name="AddButton"
-                                                    Content="+" 
+                                                    Content="X" 
                                                     Width="40" 
                                                     Click="UninstallButtonHandler"></Button>
                                         </DataTemplate>
@@ -113,9 +124,9 @@
             </TabItem>
             <TabItem x:Name="AboutTab" Header="About" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="100" Margin="0" FontSize="16" FontWeight="Bold">
                 <Grid Background="#FFE5E5E5">
-                    <Label Content="About info" Margin="0,42,0,0" VerticalAlignment="Top" Height="371"/>
-                    <Label Content="Label" Margin="0,0,114,371"/>
-                    <Button x:Name="CheckUpdatesButton" Content="Check updates" HorizontalAlignment="Left" Height="42" Margin="570,0,0,0" VerticalAlignment="Top" Width="114"/>
+                    <Label x:Name="AboutInfoLabel" Content="About info" Margin="0,42,0,0" VerticalAlignment="Top" Height="371"/>
+                    <Label Content="Label" Margin="0,0,129.814,371"/>
+                    <Button x:Name="CheckUpdatesButton" Content="Check updates" HorizontalAlignment="Left" Height="42" Margin="554.186,0,0,0" VerticalAlignment="Top" Width="114"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -4,7 +4,7 @@
     {
         public string Info { get; set; }
 
-
+        public LocalApplication LocalApplication { get; set; }
     }
 }
 
