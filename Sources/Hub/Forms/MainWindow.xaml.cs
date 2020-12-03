@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -104,7 +105,7 @@ namespace Hub
         {
             foreach ( var remoteEditor in _remoteEditors.ApplicationInfoList ) {
 
-                var local = _localEditors.ApplicationInfoList.Find(x => 
+                var local = _localEditors.ApplicationInfoList.Find(x =>
                     x.ApplicationInfo.Version.Build == remoteEditor.Version.Build);
                 if ( local != null ) {
                     continue;
@@ -112,7 +113,7 @@ namespace Hub
 
                 var item = new InstallItem()
                 {
-                    Info = $"Tornado Editor {remoteEditor}",
+                    Info = $"Tornado Editor {remoteEditor.Version}",
                     EditorProperties = remoteEditor
                 };
 
@@ -130,7 +131,7 @@ namespace Hub
                     LocalApplication = localEditor
                 };
 
-                InstallList.Items.Add(item);
+                LaunchList.Items.Add(item);
             }
         }
         #endregion
@@ -149,15 +150,35 @@ namespace Hub
             var installForm = new InstallForm();
 
             var localEditor = new LocalApplication();
-            localEditor.ApplicationInfo.Version = installItem.EditorProperties.Version;
 
-            installForm.Setup( () => Install(localEditor), localEditor);
+            string userPath = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+            if ( Environment.OSVersion.Version.Major >= 6 ) {
+                userPath = Directory.GetParent(userPath).ToString();
+            }
+
+            localEditor.InstallationFolder = userPath + Path.DirectorySeparatorChar + "TornadoEditor";
+
+            localEditor.ApplicationInfo.Version = installItem.EditorProperties.Version;
+            localEditor.ApplicationInfo.LaunchPath = installItem.EditorProperties.LaunchPath;
+
+            installForm.Setup(() => Install(localEditor), localEditor);
 
             installForm.ShowDialog();
         }
 
         private void Install(LocalApplication localEditor)
         {
+            if ( Directory.Exists(localEditor.InstallationFolder) ) {
+                Directory.Delete(localEditor.InstallationFolder, true);
+            }
+
+            try {
+                Directory.CreateDirectory(localEditor.InstallationFolder);
+            }
+            catch ( System.Exception ex ) {
+                return;
+            }
+
             var client = new WebClient();
             var arhciveFileName = "temp.zip";
 
@@ -165,12 +186,13 @@ namespace Hub
 
             System.IO.Compression.ZipFile.ExtractToDirectory(arhciveFileName, localEditor.InstallationFolder);
 
-            System.IO.File.Delete(arhciveFileName);
+            File.Delete(arhciveFileName);
 
             _localEditors.ApplicationInfoList.Add(localEditor);
 
             var localEditorsJson = Newtonsoft.Json.JsonConvert.SerializeObject(_localEditors);
-            System.IO.File.WriteAllText(localEditorsJson, LOCAL_EDITORS_PATH);
+
+            File.WriteAllText(LOCAL_EDITORS_PATH, localEditorsJson);
 
             RefreshLaunchList();
             RefreshInstallList();
@@ -181,12 +203,12 @@ namespace Hub
             var button = sender as Button;
             var launchItem = button.DataContext as LaunchItem;
 
-            System.IO.Directory.Delete(launchItem.LocalApplication.InstallationFolder);
+            Directory.Delete(launchItem.LocalApplication.InstallationFolder, true);
 
             _localEditors.ApplicationInfoList.Remove(launchItem.LocalApplication);
 
             var localEditorsJson = Newtonsoft.Json.JsonConvert.SerializeObject(_localEditors);
-            System.IO.File.WriteAllText(localEditorsJson, LOCAL_EDITORS_PATH);
+            File.WriteAllText(LOCAL_EDITORS_PATH, localEditorsJson);
 
             RefreshLaunchList();
             RefreshInstallList();
@@ -199,7 +221,7 @@ namespace Hub
             var button = sender as Button;
             var launchItem = button.DataContext as LaunchItem;
 
-            var launchFullPath = 
+            var launchFullPath =
                 launchItem.LocalApplication.InstallationFolder + launchItem.LocalApplication.ApplicationInfo.LaunchPath;
 
             Process.Start(launchFullPath);

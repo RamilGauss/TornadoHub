@@ -4,7 +4,7 @@ namespace Hub
 {
     public class VersionInfo
     {
-        public List<string> Info { get; set; }
+        public List<string> Info { get; set; } = new List<string>();
 
         public int MajorVersion { get; set; }
         public int MinorVersion { get; set; }

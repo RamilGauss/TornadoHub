@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 
 namespace Hub
@@ -49,13 +50,11 @@ namespace Hub
 
         private void DoInstallButtonHandler(object sender, RoutedEventArgs e)
         {
-
-
-            // Additional utilities installations
+            // TODO: Additional utilities installations
 
             var version = _localEditor.ApplicationInfo.Version;
-            var path = $"{_localEditor.InstallationFolder}/{version.MajorVersion}.{version.MinorVersion}.{version.Build}";
-
+            var path = $"{_localEditor.InstallationFolder}{Path.DirectorySeparatorChar}{version.MajorVersion}.{version.MinorVersion}.{version.Build}";
+            _localEditor.InstallationFolder = path;
 
             _onInstall?.Invoke();
 
